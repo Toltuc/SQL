@@ -1,17 +1,17 @@
 USE P_421_Import;
-SET DATEFIRST 1;	-- 1 - РџРЅ, 2 - Р’С‚, 3 - РЎСЂ.....
+SET DATEFIRST 1;	-- 1 - Пн., 2 - Вт., 3 - Ср.....
 
 --INSERT Groups(group_id,group_name,direction) VALUES (421,N'P_421',1);
 
---DECLARE - РѕР±СЉСЏРІРёС‚СЊ
---@name - Сѓ РїРµСЂРµРјРµРЅРЅС‹С… РІСЃРµРіРґР° РЅР°С‡РёРЅР°РµС‚СЃСЏ СЃ @
---AS - Сѓ_РїРµСЂРµРјРµРЅРЅРѕР№_С‚РёРї
+--DECLARE - Объявить
+--@name - имя любой переменной всегда начинается с @
+--AS - как ТИП_ДАННЫХ
 
 DECLARE @group				AS	INT		= (SELECT group_id			FROM Groups			WHERE group_name=N'P_421');
 DECLARE @discipline			AS	SMALLINT= (SELECT discipline_id		FROM Disciplines	WHERE discipline_name LIKE N'%MS SQL Server');
 DECLARE @number_of_lessons	AS	TINYINT	= (SELECT number_of_lessons FROM Disciplines	WHERE discipline_name LIKE N'%MS SQL Server');
 DECLARE @lesson_number		AS	TINYINT	= 0
-DECLARE @teacher			AS	SMALLINT= (SELECT teacher_id		FROM Teachers		WHERE first_name LIKE N'Рћ');
+DECLARE @teacher			AS	SMALLINT= (SELECT teacher_id		FROM Teachers		WHERE first_name LIKE N'Олег');
 DECLARE @start_date			AS	DATE	=	N'2026-03-26';
 DECLARE @date				AS	DATE	=	@start_date;
 DECLARE @start_time			AS	TIME(0)	=	N'14:00';

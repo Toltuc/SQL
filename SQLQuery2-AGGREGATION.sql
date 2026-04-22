@@ -51,7 +51,7 @@ FROM   Disciplines
 JOIN   TeachersDisciplinesRelation ON Disciplines.discipline_id = TeachersDisciplinesRelation.discipline
 GROUP BY Disciplines.discipline_name;
 
--- студенты от 25 до 35 лет
+-- ДЗ 1: студенты от 25 до 35 лет
 SELECT 
     last_name AS [Фамилия],
     first_name AS [Имя],
@@ -59,4 +59,22 @@ SELECT
     DATEDIFF(YEAR, birth_date, GETDATE()) AS [Возраст]
 FROM Students
 WHERE DATEDIFF(YEAR, birth_date, GETDATE()) BETWEEN 25 AND 35;
+
+-- ДЗ 2: группы, в которых меньше 10 студентов
+SELECT 
+    Groups.group_name          AS [Группа],
+    COUNT(Students.student_id) AS [Количество студентов]
+FROM Groups
+LEFT JOIN Students ON Students.[group] = Groups.group_id
+GROUP BY Groups.group_name
+HAVING COUNT(Students.student_id) < 10;
+
+-- ДЗ 3: группы, в которых нет студентов
+SELECT 
+    Groups.group_name          AS [Группа],
+    COUNT(Students.student_id) AS [Количество студентов]
+FROM Groups
+LEFT JOIN Students ON Students.[group] = Groups.group_id
+GROUP BY Groups.group_name
+HAVING COUNT(Students.student_id) = 0;
 
